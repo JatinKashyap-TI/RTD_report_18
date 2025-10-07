@@ -1,0 +1,1441 @@
+<odoo>
+  <data noupdate="1" >
+    <!-- Tag Group  -->
+    <record id="tax_group_taxes_ie" model="account.tax.group">
+      <field name="name">Taxes</field>
+      <field name="sequence">10</field>
+      <field name="country_id" ref="base.ie"/>
+    </record>
+    <!-- Tags -->
+    <record id="tag_taxT18S" model="account.account.tag">
+      <field name="name">+taxT18S</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT18S" model="account.account.tag">
+      <field name="name">-taxT18S</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT42" model="account.account.tag">
+      <field name="name">+taxT42</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT42" model="account.account.tag">
+      <field name="name">-taxT42</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT43" model="account.account.tag">
+      <field name="name">+taxT43</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT43" model="account.account.tag">
+      <field name="name">-taxT43</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT19" model="account.account.tag">
+      <field name="name">+taxT19</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT19" model="account.account.tag">
+      <field name="name">-taxT19</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT21" model="account.account.tag">
+      <field name="name">+taxT21</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT21" model="account.account.tag">
+      <field name="name">-taxT21</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT3" model="account.account.tag">
+      <field name="name">+taxT3</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT3" model="account.account.tag">
+      <field name="name">-taxT3</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT24" model="account.account.tag">
+      <field name="name">+taxT24</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT24" model="account.account.tag">
+      <field name="name">-taxT24</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT38" model="account.account.tag">
+      <field name="name">+taxT38</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT38" model="account.account.tag">
+      <field name="name">-taxT38</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT1" model="account.account.tag">
+      <field name="name">+taxT1</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT1" model="account.account.tag">
+      <field name="name">-taxT1</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT60" model="account.account.tag">
+      <field name="name">+taxT60</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT60" model="account.account.tag">
+      <field name="name">-taxT60</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT61" model="account.account.tag">
+      <field name="name">+taxT61</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT61" model="account.account.tag">
+      <field name="name">-taxT61</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT46" model="account.account.tag">
+      <field name="name">+taxT46</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT46" model="account.account.tag">
+      <field name="name">-taxT46</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT47" model="account.account.tag">
+      <field name="name">+taxT47</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT47" model="account.account.tag">
+      <field name="name">-taxT47</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT48" model="account.account.tag">
+      <field name="name">+taxT48</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT48" model="account.account.tag">
+      <field name="name">-taxT48</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT49" model="account.account.tag">
+      <field name="name">+taxT49</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT49" model="account.account.tag">
+      <field name="name">-taxT49</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT8" model="account.account.tag">
+      <field name="name">+taxT8</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT8" model="account.account.tag">
+      <field name="name">-taxT8</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT44" model="account.account.tag">
+      <field name="name">+taxT44</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT44" model="account.account.tag">
+      <field name="name">-taxT44</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT45" model="account.account.tag">
+      <field name="name">+taxT45</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT45" model="account.account.tag">
+      <field name="name">-taxT45</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT4" model="account.account.tag">
+      <field name="name">+taxT4</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT4" model="account.account.tag">
+      <field name="name">-taxT4</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT2" model="account.account.tag">
+      <field name="name">+taxT2</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT2" model="account.account.tag">
+      <field name="name">-taxT2</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT18" model="account.account.tag">
+      <field name="name">+taxT18</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT18" model="account.account.tag">
+      <field name="name">-taxT18</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag-minus_taxT0" model="account.account.tag">
+      <field name="name">-taxT0</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag-minus_taxT7" model="account.account.tag">
+      <field name="name">-taxT7</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT12" model="account.account.tag">
+      <field name="name">+taxT12</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT6" model="account.account.tag">
+      <field name="name">+taxT6</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_minus_taxT6" model="account.account.tag">
+      <field name="name">-taxT6</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT0" model="account.account.tag">
+      <field name="name">+taxT0</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT7" model="account.account.tag">
+      <field name="name">+taxT7</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag-minus_taxT12" model="account.account.tag">
+      <field name="name">-taxT12</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag_plus_taxT40" model="account.account.tag">
+      <field name="name">+taxT40</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <record id="tag-minus_taxT40" model="account.account.tag">
+      <field name="name">-taxT40</field>
+      <field name="applicability">taxes</field>
+    </record>
+    <!-- Taxes -->
+    <record id="T18S_Exempt_Sales_Transactions" model="account.tax">
+      <field name="name">T18S - Exempt Sales Transactions</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">sale</field>
+      <field name="amount">0</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+                    (0, 0, {
+                        'repartition_type': 'base',
+                        'tag_ids': [
+                            
+                        ],
+                    }),
+                    (0, 0, {
+                        'repartition_type': 'tax',
+                        'factor_percent': 100,
+                        'tag_ids': [
+                            
+                            (4, ref('tag_taxT18S'))
+                        ],
+                    })
+                ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+                    (0, 0, {
+                        'repartition_type': 'base',
+                        'tag_ids': [
+                            
+                        ],
+                    }),
+                    (0, 0, {
+                        'repartition_type': 'tax',
+                        'factor_percent': 100,
+                        'tag_ids': [
+                            
+                            (4, ref('tag_minus_taxT18S'))
+                        ],
+                    })
+                ]"/>
+    </record>
+    <record id="T42_Export_of_Services" model="account.tax">
+      <field name="name">T42 - Export of Services</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">sale</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">0</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+                    (0, 0, {
+                        'repartition_type': 'base',
+                        'tag_ids': [
+                            
+                        ],
+                    }),
+                    (0, 0, {
+                        'repartition_type': 'tax',
+                        'factor_percent': 100,
+                        'tag_ids': [
+                            (4, ref('tag_plus_taxT42')),
+                            
+                            
+                        ],
+                    })
+                ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+                    (0, 0, {
+                        'repartition_type': 'base',
+                        'tag_ids': [
+                            
+                        ],
+                    }),
+                    (0, 0, {
+                        'repartition_type': 'tax',
+                        'factor_percent': 100,
+                        'tag_ids': [
+                            (4, ref('tag_minus_taxT42')),
+                            
+                            
+                        ],
+                    })
+                ]"/>
+    </record>
+    <record id="T43_Export_of_goods" model="account.tax">
+      <field name="name">T43 - Export of Goods</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">sale</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">0</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+                (0, 0, {
+                'repartition_type': 'base',
+                'tag_ids': [
+                    
+                ]
+                }),
+                (0, 0, {
+                'repartition_type': 'tax',
+                'factor_percent': 100,
+                'tag_ids': [
+                    
+                    (4, ref('tag_plus_taxT43')),
+                    
+                ]
+                })
+            ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+                (0, 0, {
+                'repartition_type': 'base',
+                'tag_ids': [
+                    
+                ]
+                }),
+                (0, 0, {
+                'repartition_type': 'tax',
+                'factor_percent': 100,
+                'tag_ids': [
+                    
+                    (4, ref('tag_minus_taxT43')),
+                    
+                ]
+                })
+            ]"/>
+    </record>
+    <record id="T19_RCT_Sales" model="account.tax">
+      <field name="name">T19 - RCT Sales</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">sale</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">0</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        
+        (4, ref('tag_plus_taxT19')),
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        
+        
+        (4, ref('tag_minus_taxT19')),
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T21_Reverse_Charges_Reduced_Rate" model="account.tax">
+      <field name="name">T21 - Reverse Charges (Reduced Rate)</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">sale</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">0</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        
+        (4, ref('tag_plus_taxT21')),
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        
+        (4, ref('tag_minus_taxT21')),
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T3_135_Sales" model="account.tax">
+      <field name="name">T3 - 13.5% Sales</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">sale</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">13.5000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">13.5%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        
+        (4, ref('tag_plus_taxT3')),
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        
+        (4, ref('tag_minus_taxT3')),
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T24_Reduced_rated_purchases_from_suppliers_EC_Services_13_RC" model="account.tax">
+      <field name="name">T24 - Reduced rated purchases from suppliers in EC -Services 13.5% - RC</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">13.5000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT24')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT24')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T38_Import_Services_Reverse_Charges" model="account.tax">
+      <field name="name">T38 - Import of Services where VAT not paid at point of entry 13.5% - RC</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">13.5000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT38')),
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [
+        
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT38')),
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [
+        
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T1_23pct_Standard_Rate_Sales" model="account.tax">
+      <field name="name">T1 - 23% Standard rate sales </field>
+      <field name="active">True</field>
+      <field name="type_tax_use">sale</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">23</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">23%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT1')),
+        
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT1')),
+        
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T60_Import_Services_23pct_RC" model="account.tax">
+      <field name="name">T60 - Import of Services where VAT is not paid at point of entry 23% - RC</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">23.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT60')),
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [
+        
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT60')),
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [
+        
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T61_Import_Goods_23pct_RC" model="account.tax">
+      <field name="name">T61 - Import of Goods where VAT is not paid at point of entry 23% - RC</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">23.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [ ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT61')), ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [ ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': []
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_minus_taxT61')), ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': [ ]
+    })
+  ]"/>
+    </record>
+    <record id="T46_Zero_Rate_ROW_Import_Resale_Postponed_VAT_Goods" model="account.tax">
+      <field name="name">T46 - Zero rate ROW import (Resale) Postponed VAT</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">0.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT46')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_minus_taxT46')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T47_Zero_Rate_ROW_Import_NonResale_Postponed_VAT_Goods" model="account.tax">
+      <field name="name">T47 - Zero rate ROW import (Non resale) Postponed VAT</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">0.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT47')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_minus_taxT47')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T48_Reduced_Rate_ROW_Import_Resale_Postponed_VAT_Services" model="account.tax">
+      <field name="name">T48 - Reduced rate ROW import (Resale) Postponed VAT</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">13.5000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT48')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT48')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T49_Reduced_Rate_ROW_Import_NonResale_Postponed_VAT_Services" model="account.tax">
+      <field name="name">T49 - Reduced rate ROW import (Non resale) Postponed VAT</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">13.5000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT49')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT49')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T8_Standard_Rated_EC_Goods_23pct_RC" model="account.tax">
+      <field name="name">T8 - Standard rated purchases from suppliers in EC - Goods 23% - RC</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">23.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT8')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT8')),
+        
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T44_Standard_Rate_23pct_ROW_Import_Resale_Postponed_VAT_RC_Goods" model="account.tax">
+      <field name="name">T44 - Standard rate 23% ROW import (Resale) Postponed VAT - RC</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">23.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT44')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_minus_taxT44')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T45_Standard_Rate_23pct_ROW_Import_NonResale_Postponed_VAT_RC_Goods" model="account.tax">
+      <field name="name">T45 - Standard rate 23% ROW import (Non resale) Postponed VAT - RC</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">23.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT45')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_minus_taxT45')),  ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': -100,
+      'tag_ids': []
+    })
+  ]"/>
+    </record>
+    <record id="T4_135pct_Purchases_for_Resale_Services" model="account.tax">
+      <field name="name">T4 - 13.5% Purchases for resale</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">service</field>
+      <field name="amount">13.5000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">13.5%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [ ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT4')), ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': []
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_minus_taxT4')), ]
+    })
+  ]"/>
+    </record>
+    <record id="T2_23pct_Standard_Rate_Purchase_for_Resale_Goods" model="account.tax">
+      <field name="name">T2 - 23% Standard rate purchase for resale</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">23.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">23%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': []
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT2')), ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [ ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_minus_taxT2')), ]
+    })
+  ]"/>
+    </record>
+    <!-- stop  -->
+    <record id="T18_Exempt_Transactions" model="account.tax">
+      <field name="name">T18 - Exempt Transactions</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="amount">0.0000</field>
+      <field name="invoice_label">0%</field>
+      <field name="amount_type">percent</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT18')),
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT18')),
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T0_Zero_Rated" model="account.tax">
+      <field name="name">T0 - Zero rated</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="amount">0.0000</field>
+      <field name="invoice_label">0%</field>
+      <field name="amount_type">percent</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT0')),
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag-minus_taxT0')),
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T7_135_purchases_not_for_resale" model="account.tax">
+      <field name="name">T7 - 13.5% purchases not for resale</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="amount">13.5000</field>
+      <field name="tax_scope">service</field>
+      <field name="amount_type">percent</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_label">13.5%</field>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT7')),
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag-minus_taxT7')),
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T12_9_purchases_not_for_resale" model="account.tax">
+      <field name="name">T12 - 9% purchases not for resale</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="amount">9.0000</field>
+      <field name="tax_scope">service</field>
+      <field name="amount_type">percent</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_label">9%</field>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT12')),
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag-minus_taxT12')),
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T6_23pct_Standard_Purchases_Not_For_Resale" model="account.tax">
+      <field name="name">T6 - 23% Standard purchases not for resale</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="amount">23.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">23%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_plus_taxT6')),
+        
+      ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [
+        
+      ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [
+        (4, ref('tag_minus_taxT6')),
+        
+      ]
+    })
+  ]"/>
+    </record>
+    <record id="T40_Import_of_Goods_Outside_EU_VAT_Paid_Point_of_Entry" model="account.tax">
+      <field name="name">T40 - Import of Goods (outside EU) where VAT paid at point entry</field>
+      <field name="active">True</field>
+      <field name="type_tax_use">purchase</field>
+      <field name="tax_scope">consu</field>
+      <field name="amount">0.0000</field>
+      <field name="amount_type">percent</field>
+      <field name="invoice_label">0%</field>
+      <field name="is_base_affected">True</field>
+<field name="tax_group_id" ref="tax_group_taxes_ie"/>
+<field name="country_id" ref="base.ie"/>
+      <field name="invoice_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': [ ]
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag_plus_taxT40')), ]
+    })
+  ]"/>
+      <field name="refund_repartition_line_ids" eval="[
+    (0, 0, {
+      'repartition_type': 'base',
+      'tag_ids': []
+    }),
+    (0, 0, {
+      'repartition_type': 'tax',
+      'factor_percent': 100,
+      'tag_ids': [(4, ref('tag-minus_taxT40')), ]
+    })
+  ]"/>
+    </record>
+  </data>
+</odoo>

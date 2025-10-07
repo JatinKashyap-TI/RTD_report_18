@@ -1,0 +1,1300 @@
+<odoo>
+
+    <data noupdate="1" >
+
+                <!-- Report Header -->
+
+    <record id="rtd_report" model="account.report">
+        <field name="name">RTD Report</field>
+        <field name="active">True</field>
+        <field name="country_id" ref="base.ie"/>
+        <field name="load_more_limit">0</field>
+        <field name="prefix_groups_threshold">0</field>
+        <field name="filter_multi_company">tax_units</field>
+        <field name="default_opening_date_filter">previous_month</field> 
+        <field name="filter_date_range">True</field>
+        <field name="filter_growth_comparison">True</field>
+        <field name="filter_period_comparison">True</field>
+        <field name="availability_condition">always</field>
+        <field name="filter_show_draft">True</field>
+        <field name="root_report_id" ref="account.generic_tax_report"/>
+
+    </record>
+                    <!-- Report Column -->
+
+    <record id="rtd_report_column_balance" model="account.report.column">
+        <field name="name">Balance</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="expression_label">balance</field>
+        <field name="figure_type">monetary</field> 
+        <field name="sortable">False</field>
+        <field name="blank_if_zero">False</field>
+    </record>
+
+                    <!--Report Lines -->
+
+                    <!-- Parent 1 -->
+
+    <record id="rtd_report_value_of_supplies_of_goods_and_service" model="account.report.line">
+        <field name="name">Value of Supplies of Goods and Services</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="hierarchy_level">1</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_Exempt_E3" model="account.report.line">
+        <field name="name">Exempt - E3</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T18S_Exempt_Transactions" model="account.report.line">
+        <field name="name">T18S - Exempt Transactions</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Exempt_E3"/>
+        <field name="code" >cbaseT18S_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT18S',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_0_Exports_D4" model="account.report.line">
+        <field name="name">0% - Exports - D4</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T42_Export_of_Services" model="account.report.line">
+        <field name="name">T42 - Export of Services</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Exports_D4"/>
+        <field name="code" >baseT42_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT42',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T43_Export_of_Goods" model="account.report.line">
+        <field name="name">T43 - Export of Goods</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Exports_D4"/>
+        <field name="code" >baseT43_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT43',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_0_Home_D1" model="account.report.line">
+        <field name="name">0% - Home - D1</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T19_RCT_Sales" model="account.report.line">
+        <field name="name">T19 - RCT Sales</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Home_D1"/>
+        <field name="code" >baseT19_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT19',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T21_Reverse_Charges_Reduced_Rate" model="account.report.line">
+        <field name="name">T21 - Reverse Charges (Reduced Rate)</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Home_D1"/>
+        <field name="code" >baseT21_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT21',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_4_8_Livestock_D5" model="account.report.line">
+        <field name="name">4.8% - Livestock - D5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    <record id="rtd_report_9_BC5" model="account.report.line">
+        <field name="name">9% - BC5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    <record id="rtd_report_13_5_Reduced_Rate_AC5" model="account.report.line">
+        <field name="name">13.5% - Reduced Rate - AC5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T3_13_5_Sales" model="account.report.line">
+        <field name="name">T3 - 13.5% Sales</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_5_Reduced_Rate_AC5"/>
+        <field name="code" >baseT3_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT3',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T24_Reduced_rated_purchases_from_suppliers_in_EC_Services_RC" model="account.report.line">
+        <field name="name">T24 - Reduced rated purchases from suppliers in EC -Services 13.5% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_5_Reduced_Rate_AC5"/>
+        <field name="code" >baseT24_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT24',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T38_Import_of_Services_where_VAT_not_paid_at_point_of_entry_RC" model="account.report.line">
+        <field name="name">T38 - Import of Services where VAT not paid at point of entry 13.5% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_5_Reduced_Rate_AC5"/>
+        <field name="code" >baseT38_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT38',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_5_4_B5" model="account.report.line">
+        <field name="name">5.4% - B5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+    <record id="rtd_report_Standard_Rate_P1" model="account.report.line">
+        <field name="name">Standard Rate - P1</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T1_23_Standard_rate_sales" model="account.report.line">
+        <field name="name">T1 - 23% Standard rate sales</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_P1"/>
+        <field name="code" >baseT1_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT1',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T60_Import_of_Services_where_VAT_is_not_paid_at_point_of_entry_23_RC" model="account.report.line">
+        <field name="name">T60 - Import of Services where VAT is not paid at point of entry 23% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_P1"/>
+        <field name="code" >baseT60_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT60',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T61_Import_of_Goods_where_VAT_is_not_paid_at_point_of_entry_RC" model="account.report.line">
+        <field name="name">T61 - Import of Goods where VAT is not paid at point of entry 23% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_P1"/>
+        <field name="code" >baseT61_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT61',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_Flat_Rate_B5" model="account.report.line">
+        <field name="name">Flat Rate - B5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    <record id="rtd_report_Totals_Z1" model="account.report.line">
+        <field name="name">Totals - Z1</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_value_of_supplies_of_goods_and_service"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+                <!-- Parent 2 -->
+
+    <record id="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels" model="account.report.line">
+        <field name="name">Value of Acquisitions from EU Countries Net of VAT,  Postponed Accounting and VAT free imported parcels</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="hierarchy_level">1</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_Exempt_E4" model="account.report.line">
+        <field name="name">Exempt - E4</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+    <record id="rtd_report_0_Home_D2" model="account.report.line">
+        <field name="name">0% - Home - D2</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T46_Zero_rate_ROW_import_Resale_Postponed_VAT_part_1" model="account.report.line">
+        <field name="name">T46 - Zero rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Home_D2"/>
+        <field name="code" >abaseT46</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT46',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T47_Zero_rate_ROW_import_Non_resale_Postponed_VAT_part1" model="account.report.line">
+        <field name="name">T47 - Zero rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Home_D2"/>
+        <field name="code" >dbaseT47</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT47',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_4_8_Livestock_C6" model="account.report.line">
+        <field name="name">4.8% - Livestock - C6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    <record id="rtd_report_9_BC6" model="account.report.line">
+        <field name="name">9% - BC6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    <record id="rtd_report_13_5_AC6" model="account.report.line">
+        <field name="name">13.5% - AC6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T48_Reduced_rate_ROW_import_Resale_Postponed_VAT_part1" model="account.report.line">
+        <field name="name">T48 - Reduced rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_5_AC6"/>
+        <field name="code" >abaseT48</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT48',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T49_Reduced_rate_ROW_import_Non_resale_Postponed_VAT_part1" model="account.report.line">
+        <field name="name">T49 - Reduced rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_5_AC6"/>
+        <field name="code" >dbaseT49</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT49',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_5_4_B6" model="account.report.line">
+        <field name="name">5.4% - B6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+
+    <record id="rtd_report_Standard_Rate_P2" model="account.report.line">
+        <field name="name">Standard Rate - P2</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T8_Standard_rated_purchases_from_suppliers_in_EC_Goods_23_RC_part1" model="account.report.line">
+        <field name="name">T8 - Standard rated purchases from suppliers in EC - Goods 23% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_P2"/>
+        <field name="code" >baseT8_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT8',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_part_1" model="account.report.line">
+        <field name="name">T44 - Standard rate 23% ROW import (Resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_P2"/>
+        <field name="code" >abaseT44</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT44',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T45_Standard_rate_23_ROW_import_Non_resale_Postponed_VAT_RC_part1" model="account.report.line">
+        <field name="name">T45 - Standard rate 23% ROW import (Non resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_P2"/>
+        <field name="code" >dbaseT45</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT45',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_Flat_Rate_FB6" model="account.report.line">
+        <field name="name">Flat Rate - FB6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+    <record id="rtd_report_Totals_Z2" model="account.report.line">
+        <field name="name">Totals - Z2</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    <record id="rtd_report_Postponed_Accounting_PA2" model="account.report.line">
+        <field name="name">Postponed Accounting - PA2</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Acquisitions_from_EU_Countries_Net_of_VAT_Postponed_Accounting_VAT_free_imported_parcels"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_part_2" model="account.report.line">
+        <field name="name">T44 - Standard rate 23% ROW import (Resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA2"/>
+        <field name="code" >dbaseT44</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT44',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_two" model="account.report.line">
+        <field name="name">T45 - Standard rate 23% ROW import (Non resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA2"/>
+        <field name="code" >abaseT45</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT45',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_three" model="account.report.line">
+        <field name="name">T46 - Zero rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA2"/>
+        <field name="code" >dbaseT46</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT46',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_four" model="account.report.line">
+        <field name="name">T47 - Zero rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA2"/>
+        <field name="code" >abaseT47</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT47',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_five" model="account.report.line">
+        <field name="name">T48 - Reduced rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA2"/>
+        <field name="code" >dbaseT48</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT48',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_six" model="account.report.line">
+        <field name="name">T49 - Reduced rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA2"/>
+        <field name="code" >abaseT49</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT49',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    
+
+            <!-- Parent 3 -->
+    
+    <record id="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports" model="account.report.line">
+        <field name="name">Value of Stock for Resale (Purchases, Intra-EU acquisitions, Postponed Accounting and Imports)</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="hierarchy_level">1</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_VAT_Rate_Exempt_E5" model="account.report.line">
+        <field name="name">VAT Rate - Exempt - E5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+    <record id="rtd_report_0_Home_J1" model="account.report.line">
+        <field name="name">0% - Home - J1</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T46_Zero_rate_ROW_import_Resale_Postponed_VAT_part3" model="account.report.line">
+        <field name="name">T46 - Zero rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Home_J1"/>
+        <field name="code" >cbaseT46_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT46',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_4_Livestock_H5" model="account.report.line">
+        <field name="name">4.8% - Livestock - H5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">3</field>
+    </record>
+    <record id="rtd_report_9_BH5" model="account.report.line">
+        <field name="name">9% - BH5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    
+    <record id="rtd_report_13_Reduced_Rate_AH5" model="account.report.line">
+        <field name="name">13.5% - Reduced Rate - AH5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+    <record id="rtd_report_T4_13_Purchases_for_resale" model="account.report.line">
+        <field name="name">T4 - 13.5% Purchases for resale</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_Reduced_Rate_AH5"/>
+        <field name="code" >baseT4_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT4',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T48_Reduced_rate_ROW_import_Resale_Postponed_VAT_part2" model="account.report.line">
+        <field name="name">T48 - Reduced rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_Reduced_Rate_AH5"/>
+        <field name="code" >cbaseT48_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT48',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+    <record id="rtd_report_5_4_G5" model="account.report.line">
+        <field name="name">5.4% - G5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">3</field>
+    </record>
+
+    <record id="rtd_report_Standard_Rate_R1" model="account.report.line">
+        <field name="name">Standard Rate - R1</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T2_23_Standard_rate_purchase_for_resale" model="account.report.line">
+        <field name="name">T2 - 23% Standard rate purchase for resale</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R1"/>
+        <field name="code" >baseT2_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT2',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_part3" model="account.report.line">
+        <field name="name">T44 - Standard rate 23% ROW import (Resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R1"/>
+        <field name="code" >cbaseT44_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT44',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_Flat_Rate_G5" model="account.report.line">
+        <field name="name">Flat Rate - G5</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    <record id="rtd_report_Totals_Z3" model="account.report.line">
+        <field name="name">Totals - Z3</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+
+    <record id="rtd_report_Postponed_Accounting_PA3" model="account.report.line">
+        <field name="name">Postponed Accounting - PA3</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Value_of_Stock_for_Resale_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+
+    <record id="rtd_report_T44_Standard_rate_23_ROW_import_Resale_Postponed_VAT_RC_part4" model="account.report.line">
+        <field name="name">T44 - Standard rate 23% ROW import (Resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA3"/>
+        <field name="code" >baseT44_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT44',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T46_Zero_rate_ROW_import_Resale_Postponed_VAT_part2" model="account.report.line">
+        <field name="name">T46 - Zero rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA3"/>
+        <field name="code" >baseT46_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT46',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T48_Reduced_rate_ROW_import_Resale_Postponed_VAT_part3" model="account.report.line">
+        <field name="name">T48 - Reduced rate ROW import (Resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA3"/>
+        <field name="code" >baseT48_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT48',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+
+
+<!-- Parent 4 -->
+
+
+    <record id="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports" model="account.report.line">
+        <field name="name">Value of Other Deductible Goods and Services (Purchases, Intra-EU acquisitions, Postponed Accounting and Imports)</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="hierarchy_level">1</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_Exempt_E6" model="account.report.line">
+        <field name="name">Exempt - E6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T18_Exempt_Transactions" model="account.report.line">
+        <field name="name">T18 - Exempt Transactions</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Exempt_E6"/>
+        <field name="code" >baseT18_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT18',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    
+    <record id="rtd_report_0_Home_J2" model="account.report.line">
+        <field name="name">0% - Home - J2</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+    <record id="rtd_report_T0_Zero_rated" model="account.report.line">
+        <field name="name">T0 - Zero rated</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Home_J2"/>
+        <field name="code" >baseT0_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT0',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T47_Zero_rate_ROW_import_Non_resale_Postponed_VAT_part2" model="account.report.line">
+        <field name="name">T47 - Zero rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_0_Home_J2"/>
+        <field name="code" >baseT47_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT47',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+
+    <record id="rtd_report_4_Livestock_H6" model="account.report.line">
+        <field name="name">4.8% - Livestock - H6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">3</field>
+    </record>
+    <record id="rtd_report_9_BH6" model="account.report.line">
+        <field name="name">9% - BH6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">3</field>
+    </record>
+
+
+
+    <record id="rtd_report_13_Reduced_Rate_AH6" model="account.report.line">
+        <field name="name">13.5% - Reduced Rate - AH6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+
+
+
+    <record id="rtd_report_T7_13_purchases_not_for_resale" model="account.report.line">
+        <field name="name">T7 - 13.5% purchases not for resale</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_Reduced_Rate_AH6"/>
+        <field name="code" >baseT7_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT7',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+    <record id="rtd_report_T12_9_purchases_not_for_resale" model="account.report.line">
+        <field name="name">T12 - 9% purchases not for resale</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_Reduced_Rate_AH6"/>
+        <field name="code" >baseT12_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT12',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T24_Reduced_rated_purchases_from_suppliers_in_EC_Services_13_RC" model="account.report.line">
+        <field name="name">T24 - Reduced rated purchases from suppliers in EC -Services 13.5% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_Reduced_Rate_AH6"/>
+        <field name="code" >cbaseT24_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT24',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T38_Import_of_Services_where_VAT_not_paid_at_point_of_entry_13_RC" model="account.report.line">
+        <field name="name">T38 - Import of Services where VAT not paid at point of entry 13.5% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_Reduced_Rate_AH6"/>
+        <field name="code" >cbaseT38_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT38',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="rtd_report_T49_Reduced_rate_ROW_import_Non_resale_Postponed_VAT_part2" model="account.report.line">
+        <field name="name">T49 - Reduced rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_13_Reduced_Rate_AH6"/>
+        <field name="code" >baseT49_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT49',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+    <record id="rtd_report_5_G6" model="account.report.line">
+        <field name="name">5.4% - G6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    
+    
+
+
+    <record id="rtd_report_Standard_Rate_R2" model="account.report.line">
+        <field name="name">Standard Rate - R2</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+    <record id="rtd_report_T6_Standard_purchases_not_for_resale" model="account.report.line">
+        <field name="name">T6 - 23% Standard purchases not for resale</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R2"/>
+        <field name="code" >baseT6_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT6',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+
+    <record id="rtd_report_T8_Standard_rated_purchases_from_suppliers_in_EC_Goods_23_RC" model="account.report.line">
+        <field name="name">T8 - Standard rated purchases from suppliers in EC - Goods 23% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R2"/>
+        <field name="code" >cbaseT8_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT8',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+
+    <record id="rtd_report_T40_Import_of_Goods_outside_EU_where_VAT_paid_at_point_entry" model="account.report.line">
+        <field name="name">T40 - Import of Goods (outside EU) where VAT paid at point entry</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R2"/>
+        <field name="code" >baseT40_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT40',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T45_Standard_rate_23_ROW_import_Non_resale_Postponed_VAT_RC_part2" model="account.report.line">
+        <field name="name">T45 - Standard rate 23% ROW import (Non resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R2"/>
+        <field name="code" >baseT45_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT45',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T60_Import_of_Services_where_VAT_is_not_paid_at_point_of_entry_23_RC_part1" model="account.report.line">
+        <field name="name">T60 - Import of Services where VAT is not paid at point of entry 23% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R2"/>
+        <field name="code" >cbaseT60_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT60',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T61_Import_of_Goods_where_VAT_is_not_paid_at_point_of_entry_23_RC" model="account.report.line">
+        <field name="name">T61 - Import of Goods where VAT is not paid at point of entry 23% - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Standard_Rate_R2"/>
+        <field name="code" >cbaseT61_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT61',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_Flat_Rate_G6" model="account.report.line">
+        <field name="name">Flat Rate - G6</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+    
+    <record id="rtd_report_Totals_Z4" model="account.report.line">
+        <field name="name">Totals - Z4</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">2</field>
+    </record>
+
+
+
+
+
+    <record id="rtd_report_Postponed_Accounting_PA4" model="account.report.line">
+        <field name="name">Postponed Accounting - PA4</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="Value_of_Other_Deductible_Goods_Services_Purchases_Intra_EU_acquisitions_Postponed_Accounting_Imports"/>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'sum_children',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+
+    <record id="rtd_report_T45_Standard_rate_23_ROW_import_Non_resale_Postponed_VAT_RC" model="account.report.line">
+        <field name="name">T45 - Standard rate 23% ROW import (Non resale) Postponed VAT - RC</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA4"/>
+        <field name="code" >cbaseT45_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT45',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    
+    <record id="rtd_report_T47_Zero_rate_ROW_import_Non_resale_Postponed_VAT_part3" model="account.report.line">
+        <field name="name">T47 - Zero rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA4"/>
+        <field name="code" >cbaseT47_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT47',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="rtd_report_T49_Reduced_rate_ROW_import_Non_resale_Postponed_VAT_part3" model="account.report.line">
+        <field name="name">T49 - Reduced rate ROW import (Non resale) Postponed VAT</field>
+        <field name="report_id" ref="rtd_report"/>
+        <field name="parent_id" ref="rtd_report_Postponed_Accounting_PA4"/>
+        <field name="code" >cbaseT49_R6</field>
+        <field name="hierarchy_level">3</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'baseT49',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+<!-- stop -->
+
+</data>
+
+</odoo>

@@ -1,0 +1,215 @@
+<odoo>
+    <data noupdate="1" >
+                   <!-- Report Header -->
+
+    <record id="vat_return" model="account.report">
+        <field name="name">VAT Return</field>
+        <field name="active">True</field>
+        <field name="country_id" ref="base.ie"/>
+        <field name="load_more_limit">0</field>
+        <field name="prefix_groups_threshold">4000</field>
+        <field name="filter_multi_company">tax_units</field>
+        <field name="default_opening_date_filter">previous_month</field> 
+        <field name="filter_date_range">True</field>
+        <field name="filter_growth_comparison">True</field>
+        <field name="filter_period_comparison">True</field>
+        <field name="availability_condition">always</field>
+        <field name="filter_show_draft">True</field>
+        <field name="root_report_id" ref="account.generic_tax_report"/>
+
+    </record>
+
+                    <!-- Report Column -->
+
+    <record id="vat_report_column_balance" model="account.report.column">
+        <field name="name">Balance</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="expression_label">balance</field>
+        <field name="figure_type">monetary</field> 
+        <field name="sortable">False</field>
+        <field name="blank_if_zero">False</field>
+    </record>
+
+    <!-- Line 1  -->
+
+    <record id="vat_report_VAT_on_Sales" model="account.report.line">
+        <field name="name">VAT on Sales</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cVOS_R5</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'VOS',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <!-- Line 2  -->
+
+    <record id="vat_report_VAT_on_Purchases" model="account.report.line">
+        <field name="name">VAT on Purchases</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cVOP_R5</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'VOP',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    <record id="vat_report_Net_Payable_Repayable" model="account.report.line">
+        <field name="name">Net Payable/Repayable</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <!-- <field name="code" ></field> -->
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'aggregation',
+                'formula': 'cVOS_R5.balance-cVOP_R5.balance',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_Total_Goods_TO_other_EU_countries" model="account.report.line">
+        <field name="name">Total Goods TO other EU countries</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cE1</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'E1',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_Total_Goods_FROm_other_EU_countries" model="account.report.line">
+        <field name="name">Total Goods FROM other EU countries</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cE2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'E2',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_Total_Services_TO_other_EU_countries" model="account.report.line">
+        <field name="name">Total Services TO other EU countries</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cES1</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'ES1',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_Total_Services_FROM_other_EU_countries" model="account.report.line">
+        <field name="name">Total Services FROM other EU countries</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cES2</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'ES2',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_Value_of_goods_imported_under_Postponed_Accounting_net_plus_carriage_insurance_and_freightCIF" model="account.report.line">
+        <field name="name">Value of goods imported under Postponed Accounting (net plus carriage, insurance and freight(CIF))</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cPA1</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'PA1',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_VAT_charged_on_supply_of_Goods_and_Services" model="account.report.line">
+        <field name="name">VAT charged on supply of Goods and Services</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cTSVG&amp;S</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'TSVG&amp;S',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_VAT_due_on_intra_EU_acquisitions_and_postponed_VAT" model="account.report.line">
+        <field name="name">VAT due on intra-EU acquisitions and postponed VAT</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cVDEU&amp;PA_R5</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'VDEU&amp;PA',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_Total_value_of_sales_excluding_VAT" model="account.report.line">
+        <field name="name">Total value of sales, excluding VAT</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >VDEU&amp;PA</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'NOSV',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+    <record id="vat_report_Total_value_of_purchases_excluding_VAT" model="account.report.line">
+        <field name="name">Total value of purchases, excluding VAT</field>
+        <field name="report_id" ref="vat_return"/>
+        <field name="hierarchy_level">1</field>
+        <field name="code" >cNOPV</field>
+        <field name="expression_ids" eval="[
+            (0, 0, {
+                'label': 'balance',
+                'engine': 'tax_tags',
+                'formula': 'NOPV',
+                'date_scope': 'strict_range',
+            })
+        ]"/>
+    </record>
+
+    
+
+
+
+
+
+    </data>
+</odoo>
